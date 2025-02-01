@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+    <link rel="canonical" href="https://troll-by-kristiansand.rf.gd/" />
+    <meta name="robots" content="index, follow" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kart med trollmarkører</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <script src="js/leaflet.js"></script>
+  </head>
+  <body style="overflow-y: hidden">
+    <main>
+      <nav>
+        <a href="/">
+          <img
+            loading="lazy"
+            src="assets/troll_logo-removebg.png"
+            alt="Troll"
+          />
+        </a>
+      </nav>
+      <section id="map"></section>
+      <div class="location-modal" id="locationModal">
+        <div class="modal-content">
+          <img loading="lazy" id="trollImage" src="" alt="Troll" />
+          <div class="details">
+            <h2 id="trollName"></h2>
+            <p id="trollDescription"></p>
+            <a href="#" id="trollLink" target="_blank">Les mer</a>
+          </div>
+          <span class="close-modal" onclick="closeModal()">×</span>
+        </div>
+      </div>
+
+      <script>
+        var map = L.map("map").setView([58.1467, 7.9963], 13);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '� <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+
+        var trollMarkers = [
+          {
+            name: "Slem Marli",
+            description:
+              "I den fantastiske byen til trollene bodde en foreldreløs trolljente ved navn Marleon.",
+            coords: [58.15, 7.997],
+            link: "troll4.html",
+            image: "assets/troll2.jpg",
+          },
+          {
+            name: "Fotograf Frodo Larsson",
+            description:
+              "Jeg vil fortelle deg en historie om den eldste innbyggeren i byen.",
+            coords: [58.145, 7.998],
+            link: "troll1.html",
+            image: "assets/troll3.jpg",
+          },
+          {
+            name: "Politibetjent Broks",
+            description:
+              "En dag skjedde det utrolige i den fredelige byen: En godteributikk ble ranet! Politibetjent ved navn Broks ble satt på saken for å etterforske dette.",
+            coords: [58.147, 7.999],
+            link: "troll3.html",
+            image: "assets/troll1.jpg",
+          },
+          {
+            name: "Fotograf Frodo Larsson",
+            description:
+              "Jeg vil fortelle deg en historie om den eldste innbyggeren i byen.",
+            coords: [58.146, 7.995],
+            link: "troll1.html",
+            image: "assets/troll3.jpg",
+          },
+          {
+            name: "Fotograf Frodo Larsson",
+            description:
+              "Jeg vil fortelle deg en historie om den eldste innbyggeren i byen.",
+            coords: [58.144, 7.996],
+            link: "troll1.html",
+            image: "assets/troll3.jpg",
+          },
+          {
+            name: "Slem Marli",
+            description:
+              "I den fantastiske byen til trollene bodde en foreldreløs trolljente ved navn Marleon.",
+            coords: [58.149, 7.994],
+            link: "troll4.html",
+            image: "assets/troll2.jpg",
+          },
+          {
+            name: "sangeren Monroe",
+            description:
+              "I den fantastiske byen til trollene bodde en foreldreløs trolljente ved navn Marleon.",
+            coords: [58.142, 7.992],
+            link: "troll2.html",
+            image: "assets/troll4.jpg",
+          },
+          {
+            name: "Slem Marli",
+            description:
+              "I den fantastiske byen til trollene bodde en foreldreløs trolljente ved navn Marleon.",
+            coords: [58.148, 7.993],
+            link: "troll4.html",
+            image: "assets/troll2.jpg",
+          },
+          {
+            name: "sangeren Monroe",
+            description:
+              "I den fantastiske byen til trollene bodde en foreldreløs trolljente ved navn Marleon.",
+            coords: [58.14, 7.991],
+            link: "troll2.html",
+            image: "assets/troll4.jpg",
+          },
+          {
+            name: "Politibetjent Broks",
+            description:
+              "En dag skjedde det utrolige i den fredelige byen: En godteributikk ble ranet! Politibetjent ved navn Broks ble satt på saken for å etterforske dette.",
+            coords: [58.151, 7.99],
+            link: "troll3.html",
+            image: "assets/troll1.jpg",
+          },
+          {
+            name: "Fotograf Frodo Larsson",
+            description:
+              "Jeg vil fortelle deg en historie om den eldste innbyggeren i byen.",
+            coords: [58.143, 7.989],
+            link: "troll1.html",
+            image: "assets/troll3.jpg",
+          },
+        ];
+
+        trollMarkers.forEach(function (troll) {
+          var marker = L.marker(troll.coords).addTo(map);
+          marker.on("click", function () {
+            openModal(troll);
+          });
+        });
+
+        function openModal(troll) {
+          document.getElementById("trollImage").src = troll.image;
+          document.getElementById("trollName").innerText = troll.name;
+          document.getElementById("trollDescription").innerText =
+            troll.description;
+          document.getElementById("trollLink").href = troll.link;
+
+          const modal = document.getElementById("locationModal");
+
+          modal.style.display = "block";
+          modal.classList.remove("closing");
+
+          modal.classList.add("opening");
+        }
+
+        function closeModal() {
+          const modal = document.getElementById("locationModal");
+          modal.classList.add("closing");
+          setTimeout(function () {
+            modal.style.display = "none";
+          }, 500);
+        }
+        document
+          .getElementById("closeModal")
+          .addEventListener("click", closeModal);
+
+        function getLocationAndDirection() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              function (position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                var heading = position.coords.heading || 0;
+
+                map.setView([latitude, longitude], 15);
+
+                updateCompass(heading);
+
+                L.marker([latitude, longitude])
+                  .addTo(map)
+                  .bindPopup("Вы здесь")
+                  .openPopup();
+              },
+              function (error) {
+                alert("Ошибка при получении местоположения: " + error.message);
+              },
+              { enableHighAccuracy: true }
+            );
+          } else {
+            alert("Геолокация не поддерживается этим устройством.");
+          }
+        }
+
+        if (window.location.protocol !== "https:") {
+          alert("Для корректной работы необходимо использовать HTTPS");
+        } else {
+          getLocationAndDirection();
+        }
+      </script>
+      <div class="language-switcher">
+        <button class="language-btn">Språk</button>
+        <div class="language-options">
+          <a href="/ru/map.html"> <div class="language-option">RU</div></a>
+          <a href="/en/map.html"> <div class="language-option">EN</div></a>
+        </div>
+      </div>
+      <script src="js/script.js"></script>
+    </main>
+  </body>
+</html>
