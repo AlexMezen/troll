@@ -43,39 +43,62 @@ img {
   transition: transform 0.3s ease, color 0.3s ease;
   margin-top: 20px;
 }
+
 .icon-container {
   text-align: center;
   width: calc(33.33% - 20px);
   padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+  height: 200px; 
 }
+
 .icon-container a {
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .icon-container img {
   width: 150px;
-  height: 150px;
+  height: auto;
   transition: transform 0.3s ease;
 }
+
 .icon-container p {
   transition: transform 0.3s ease, color 0.3s ease;
   color: white;
   font-size: 20px;
   font-weight: 700;
+  margin-top: 10px; 
 }
+
 .icon-container:hover img {
   transform: scale(1.1);
 }
+
 .icon-container:hover p {
   transform: translateY(5px);
+}
+.icon-container:nth-child(2) img {
+  height: 200px;
+  width: 110px;
+}
+.icon-container:nth-child(3) img {
+  height: 170px; 
+  transform: rotate(5.5deg) translateX(5px)
 }
 @media (max-width: 768px) {
   .icon-container {
     width: calc(50% - 20px);
   }
+  .icon-container img {
+    max-height: max-content;
+  }
 }
+
 .footer {
   background-color: black;
   padding: 20px;
@@ -422,7 +445,7 @@ nav img {
     padding: 20px;
   }
   #share {
-    margin-left: -35px;
+    margin-left: -10px;
   }
 }
 
@@ -448,7 +471,6 @@ nav img {
   opacity: 1;
   transform: translateX(-50%) translateY(-10px);
 }
-
 .video-section {
   position: relative;
   max-width: 100%;
@@ -463,8 +485,8 @@ nav img {
 .video-container {
   position: relative;
   width: 100%;
-  height: auto;
-  padding-top: 56.25%;
+  height: 0;
+  padding-top: 56.25%; /* Соотношение сторон 16:9 */
   overflow: hidden;
   background-color: #000;
 }
@@ -475,10 +497,28 @@ nav img {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  height: 80%;
+  height: 100%;
   object-fit: cover;
   border-radius: 8px;
 }
+
+/* Мобильные стили */
+@media (max-width: 768px) {
+  .video-section {
+    padding: 0 10px;
+  }
+
+  .video-container {
+    padding-top: 75%; /* Сделать более вертикальным (4:3 соотношение) */
+  }
+
+  #video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -527,7 +567,7 @@ nav img {
   }
 }
 .troll img{
-  object-fit: fill;
+  object-fit: cover;
 }
 .section-form {
   width: 70%;
@@ -587,4 +627,43 @@ nav img {
     height: 200px !important;
     margin-top: -50px;
   }
+  .mt-50{
+    margin-top: 50px;
+  }
+}
+.mb-30{
+  margin-bottom: -30px;
+}
+.mb-10{
+  margin-bottom: -17px;
+}
+.custom-icon-section {
+  background-color: #2285fa;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 5px;
+}
+
+.custom-icon-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-icon-container img {
+  width: 150px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.custom-icon-container p {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.custom-icon-container:hover img {
+  transform: scale(1.1);
 }

@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link
-      rel="shortcut icon"
-      href="../assets/favicon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon" />
     <link rel="canonical" href="https://troll-by-kristiansand.rf.gd/" />
     <meta name="robots" content="index, follow" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Map with Troll Markers</title>
-    <meta
-      name="description"
-      content="Troll - Trolls are equal citizens of the city. They live in crooked houses, hidden among the narrow streets of Kvadraturen or under bridges. "
-    />
+    <title>Trolls - Stories, Legends, and Buying Trolls</title>
+    <meta name="description" content="Trolls are equal residents of the city. They live in crooked houses, hide in the narrow streets of Kvadraturen, or under bridges.">
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/leaflet.css" />
     <script src="../js/leaflet.js"></script>
@@ -22,13 +15,7 @@
   <body style="overflow-y: hidden">
     <main>
       <nav>
-        <a href="/en/">
-          <img
-            loading="lazy"
-            src="../assets/troll_logo-removebg.png"
-            alt="Troll"
-          />
-        </a>
+        <a href="/"><img loading="lazy" src="../assets/troll_logo-removebg.png" alt="Trolls" /></a>
       </nav>
       <section id="map"></section>
       <div class="location-modal" id="locationModal">
@@ -48,33 +35,17 @@
 
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
 
         var trollMarkers = [
-          {
-            name: "Slem Marli",
+        {
+            name: "Photographer Frodo L.",
             description:
-              "In the fantastic city of trolls lived an orphan troll girl named Marleon.",
-            coords: [58.15, 7.997],
-            link: "troll4.html",
-            image: "../assets/troll2.jpg",
-          },
-          {
-            name: "Photographer Frodo Larsson",
-            description:
-              "I will tell you a story about the oldest resident of the city.",
-            coords: [58.145, 7.998],
+              "I will tell you a story about the oldest resident of the city. Some say he was even older than the city itself...",
+            coords: [58.14608003776434, 7.995627926384664],
             link: "troll1.html",
-            image: "../assets/troll3.jpg",
-          },
-          {
-            name: "Police Officer Broks",
-            description:
-              "One day, something incredible happened in the peaceful city: A candy store was robbed! Police officer Broks was assigned to investigate this case.",
-            coords: [58.147, 7.999],
-            link: "troll3.html",
-            image: "../assets/troll1.jpg",
+            image: "assets/troll-gallery1.jpg",
           },
         ];
 
@@ -88,8 +59,7 @@
         function openModal(troll) {
           document.getElementById("trollImage").src = troll.image;
           document.getElementById("trollName").innerText = troll.name;
-          document.getElementById("trollDescription").innerText =
-            troll.description;
+          document.getElementById("trollDescription").innerText = troll.description;
           document.getElementById("trollLink").href = troll.link;
 
           const modal = document.getElementById("locationModal");
@@ -139,7 +109,7 @@
         }
 
         if (window.location.protocol !== "https:") {
-          alert("For proper functionality, HTTPS is required");
+          alert("To function properly, HTTPS is required");
         } else {
           getLocationAndDirection();
         }
@@ -147,8 +117,8 @@
       <div class="language-switcher">
         <button class="language-btn">Lang</button>
         <div class="language-options">
-          <a href="/ru/map.html"> <div class="language-option">RU</div></a>
           <a href="/kart.html"> <div class="language-option">NO</div></a>
+          <a href="/ru/map.html"> <div class="language-option">RU</div></a>
         </div>
       </div>
       <script src="../js/script.js"></script>
