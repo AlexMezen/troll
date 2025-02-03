@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.png"
+      type="image/x-icon"
+    />
     <link rel="canonical" href="https://troll-by-kristiansand.rf.gd/" />
     <meta name="robots" content="index, follow" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Тролли - истории, легенды и покупка троллей</title>
-    <meta name="description" content="Тролли - тролли являются равноправными жителями города. Они живут в кривых домах, прячутся в узких улочках Квадратуры или под мостами.">
+    <meta
+      name="description"
+      content="Тролли - тролли являются равноправными жителями города. Они живут в кривых домах, прячутся в узких улочках Квадратуры или под мостами."
+    />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/leaflet.css" />
     <script src="../js/leaflet.js"></script>
@@ -15,7 +22,12 @@
   <body style="overflow-y: hidden">
     <main>
       <nav>
-        <a href="/"><img loading="lazy" src="../assets/troll_logo-removebg.png" alt="Тролли" /></a>
+        <a href="/"
+          ><img
+            loading="lazy"
+            src="../assets/troll_logo-removebg.png"
+            alt="Тролли"
+        /></a>
       </nav>
       <section id="map"></section>
       <div class="location-modal" id="locationModal">
@@ -39,13 +51,13 @@
         }).addTo(map);
 
         var trollMarkers = [
-        {
+          {
             name: "Фотограф Фродо Л.",
             description:
               "Я расскажу вам историю о самом старом жителе города. Некоторые говорят, что он был даже старше самого города...",
             coords: [58.14608003776434, 7.995627926384664],
             link: "troll1.html",
-            image: "assets/troll-gallery1.jpg",
+            image: "../assets/troll-gallery1.jpg",
           },
         ];
 
@@ -59,7 +71,8 @@
         function openModal(troll) {
           document.getElementById("trollImage").src = troll.image;
           document.getElementById("trollName").innerText = troll.name;
-          document.getElementById("trollDescription").innerText = troll.description;
+          document.getElementById("trollDescription").innerText =
+            troll.description;
           document.getElementById("trollLink").href = troll.link;
 
           const modal = document.getElementById("locationModal");
